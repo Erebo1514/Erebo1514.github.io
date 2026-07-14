@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Familia olfativa — Aroma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ======================= HEADER ======================= -->
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo">
+      <!-- Cuando exista el archivo de logo, sustituir por:
+      <img src="img/logo/logo.png" alt="Aroma" class="logo__img"> -->
+      AROMA
+    </a>
+
+    <nav class="nav">
+      <a href="familias.html">Colonias</a>
+      <a href="index.html#novedades">Novedades</a>
+      <a href="index.html#notas">Buscar por notas</a>
+      <a href="index.html#quiz">Test de aroma</a>
+    </nav>
+
+    <!-- Buscar / Iniciar sesión / Carrito: desactivados por ahora. Ver index.html. -->
+    <!--
+    <div class="header__icons">
+      <button class="icon-btn" aria-label="Buscar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Carrito">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count">0</span>
+      </button>
+      <button class="icon-btn" aria-label="Mi cuenta">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+      </button>
+    </div>
+    -->
+  </div>
+</header>
+
+<!-- ======================= HERO A PANTALLA COMPLETA ======================= -->
+<!-- Se rellena entero desde funcion.js -> inicializarPaginaFamilia(),
+     leyendo el parámetro ?familia= de la URL (ej: familia.html?familia=amaderados) -->
+<section class="familia-hero" id="familia-hero">
+  <div class="familia-hero__foto">
+    <span class="familia-hero__titulo"></span>
+  </div>
+  <div class="familia-hero__stats">
+    <!-- estadísticas generadas dinámicamente -->
+  </div>
+</section>
+
+<!-- ======================= PRODUCTOS DE ESTA FAMILIA ======================= -->
+<section class="novedades">
+  <h2 class="section-title">Todos los perfumes</h2>
+  <p class="section-sub">El catálogo completo de esta familia olfativa.</p>
+
+  <div class="productos__grid" id="familia-productos-grid"></div>
+</section>
+
+<!-- ======================= FOOTER ======================= -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__col">
+      <p class="logo logo--footer">AROMA</p>
+      <p>Perfumería selecta desde 2026.</p>
+    </div>
+    <div class="footer__col">
+      <a href="#">Contacto</a>
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+      <a href="#">Política de privacidad</a>
+    </div>
+  </div>
+  <p class="footer__copy">© 2026 Aroma</p>
+</footer>
+
+<script src="funcion.js"></script>
+</body>
+</html>

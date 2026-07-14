@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aroma — Encuentra tu aroma ideal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<!-- SDK de Featurebase: script público, sin claves secretas.
+     Solo carga el widget; la configuración (organización, board) va en funcion.js -->
+<script>!(function(e,t){const a="featurebase-sdk";function n(){if(!t.getElementById(a)){var e=t.createElement("script");(e.id=a),(e.src="https://do.featurebase.app/js/sdk.js"),t.getElementsByTagName("script")[0].parentNode.insertBefore(e,t.getElementsByTagName("script")[0])}}"function"!=typeof e.Featurebase&&(e.Featurebase=function(){(e.Featurebase.q=e.Featurebase.q||[]).push(arguments)}),"complete"===t.readyState||"interactive"===t.readyState?n():t.addEventListener("DOMContentLoaded",n)})(window,document);</script>
+</head>
+<body>
+
+<!-- ======================= HEADER ======================= -->
+<header class="header">
+  <div class="header__inner">
+    <a href="#" class="logo">
+      <!-- Cuando exista el archivo de logo, sustituir por: -->
+      <img src="img/logo/logo.png" alt="Aroma" class="logo__img">
+      <!-- AROMA -->
+    </a>
+
+    <nav class="nav">
+      <a href="familias.html">Colonias</a>
+      <a href="#novedades">Novedades</a>
+      <a href="#notas">Buscar por notas</a>
+      <a href="#quiz">Test de aroma</a>
+    </nav>
+
+    <!-- Buscar / Iniciar sesión / Carrito: desactivados por ahora,
+         a la espera de implementar cuentas de usuario y pasarela de compra.
+         Descomentar este bloque cuando esas funciones estén listas. -->
+    <!--
+    <div class="header__icons">
+      <button class="icon-btn" aria-label="Buscar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Carrito">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count">0</span>
+      </button>
+      <button class="icon-btn" aria-label="Mi cuenta">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+      </button>
+    </div>
+    -->
+  </div>
+</header>
+
+<!-- ======================= HERO ======================= -->
+<section class="hero">
+  <div class="hero__text">
+    <p class="eyebrow">Perfumería selecta</p>
+    <h1>Encuentra tu<br><em>aroma ideal</em></h1>
+    <a href="#familias" class="btn btn--primary">Explorar colonias</a>
+  </div>
+  <div class="hero__image">
+    <img src="img/hero/hero-perfumes.jpg" alt="Composición de frascos de perfume sobre fondo neutro">
+  </div>
+</section>
+
+<!-- ======================= MÁS VENDIDOS ======================= -->
+<section class="mas-vendidos" id="mas-vendidos">
+  <h2 class="section-title">Más vendidos</h2>
+  <p class="section-sub">Los favoritos de siempre. Si quieres explorar por tipo de aroma, ve a <a href="familias.html" class="section-sub__link">todas las colonias</a>.</p>
+
+  <div class="productos__grid" id="mas-vendidos-grid"></div>
+</section>
+
+<!-- ======================= NOVEDADES / PRODUCTOS ======================= -->
+<!-- Se muestran solo 4 perfumes (uno por familia hasta completar 4).
+     El límite se controla en funcion.js -> pintarNovedades() -->
+<section class="novedades" id="novedades">
+  <h2 class="section-title">Novedades</h2>
+  <p class="section-sub">Un vistazo rápido a nuestras familias olfativas.</p>
+
+  <div class="productos__grid" id="productos-grid">
+    <!-- Las tarjetas de producto se generan en funcion.js a partir del array PRODUCTOS -->
+  </div>
+</section>
+
+<!-- ======================= BUSCADOR POR NOTAS ======================= -->
+<section class="notas" id="notas">
+  <h2 class="section-title">Busca por notas, no por nombre</h2>
+  <p class="section-sub">Marca las notas que te gustan y te enseñamos qué colonias las llevan.</p>
+
+  <form class="notas__form" id="notas-form">
+    <label class="nota-chip"><input type="checkbox" name="nota" value="vainilla"> Vainilla</label>
+    <label class="nota-chip"><input type="checkbox" name="nota" value="madera"> Madera</label>
+    <label class="nota-chip"><input type="checkbox" name="nota" value="citricos"> Cítricos</label>
+    <label class="nota-chip"><input type="checkbox" name="nota" value="cuero"> Cuero</label>
+    <label class="nota-chip"><input type="checkbox" name="nota" value="coco"> Coco</label>
+    <label class="nota-chip"><input type="checkbox" name="nota" value="cafe"> Café</label>
+    <label class="nota-chip"><input type="checkbox" name="nota" value="tabaco"> Tabaco</label>
+
+    <button type="submit" class="btn btn--primary btn--small">Buscar</button>
+    <button type="button" class="btn btn--ghost btn--small" id="notas-reset">Limpiar</button>
+  </form>
+
+  <div class="notas__resultado" id="notas-resultado" aria-live="polite"></div>
+</section>
+
+<!-- ======================= POR QUÉ ELEGIRNOS ======================= -->
+<section class="ventajas">
+  <h2 class="section-title">¿Por qué elegirnos?</h2>
+  <div class="ventajas__grid">
+    <div class="ventaja"><span>✓</span> Originales al 100%</div>
+    <div class="ventaja"><span>✓</span> Envío en 24h</div>
+    <div class="ventaja"><span>✓</span> Devolución en 30 días</div>
+    <div class="ventaja"><span>✓</span> Más de 500 perfumes</div>
+  </div>
+</section>
+
+<!-- ======================= QUIZ ======================= -->
+<section class="quiz" id="quiz">
+  <div class="quiz__intro" id="quiz-intro">
+    <h2 class="section-title section-title--light">¿No sabes qué perfume elegir?</h2>
+    <p class="section-sub section-sub--light">Descúbrelo en menos de un minuto.</p>
+    <button class="btn btn--dorado" id="quiz-start">Hacer el test</button>
+  </div>
+
+  <div class="quiz__box" id="quiz-box" hidden>
+    <div class="quiz__progress"><div class="quiz__progress-bar" id="quiz-progress-bar"></div></div>
+    <div id="quiz-pregunta"></div>
+  </div>
+
+  <div class="quiz__resultado" id="quiz-resultado" hidden></div>
+</section>
+
+<!-- ======================= CAJA DE IDEAS: ELECCIÓN DE USUARIOS =======================
+     Justo después del quiz, como pediste.
+
+     CÓMO FUNCIONA (léelo antes de publicar):
+     GitHub Pages solo sirve archivos estáticos: no hay servidor propio, así que
+     esta página no puede llamar directamente a la API de Featurebase (esa API
+     necesita una clave secreta que nunca debe aparecer en el código de una web
+     pública). En su lugar usamos el WIDGET oficial de Featurebase: un script
+     público, sin claves secretas, hecho justo para este caso.
+
+     Al pulsar el botón "Enviar sugerencia" se abre el formulario de Featurebase
+     en una ventana emergente. Ahí es donde el visitante escribe el nombre de la
+     colonia y sus datos de contacto (no en esta página).
+
+     LO QUE TIENES QUE HACER TÚ (una sola vez):
+       1. Crea una cuenta gratuita en https://featurebase.app
+       2. Crea un "board" (tablón) llamado, por ejemplo, "Sugerencias de colonias".
+       3. Dentro de ese board, en Settings -> Custom fields, añade dos campos
+          de texto obligatorios: "Nombre" y "Gmail o teléfono".
+       4. En Settings -> Developers -> Installation copia el nombre de tu
+          organización (el subdominio de tu panel, ej. si tu panel es
+          aroma.featurebase.app, tu organización es "aroma").
+       5. Sustituye "TU-ORGANIZACION" aquí abajo y en funcion.js por ese nombre,
+          y "sugerencias-de-colonias" por el slug real de tu board.
+     Con eso, cada sugerencia llegará directamente a tu panel de Featurebase,
+     ya no hace falta la carpeta /Eleccion_users ni nada de localStorage. -->
+<section class="eleccion" id="eleccion">
+  <h2 class="section-title">Pide la colonia que quieras ver aquí</h2>
+  <p class="section-sub">¿Echas en falta un perfume en concreto? Cuéntanos tu nombre, el de la colonia y cómo contactarte (Gmail o teléfono), y te avisamos si lo incorporamos.</p>
+
+  <div class="eleccion__caja">
+    <button type="button" class="btn btn--primary btn--small" data-featurebase-feedback>
+      Enviar sugerencia
+    </button>
+    <p class="eleccion__nota">Se abrirá un formulario seguro donde podrás escribir tu nombre, la colonia que buscas y tu Gmail o teléfono.</p>
+  </div>
+</section>
+
+<!-- ======================= MÉTODOS DE PAGO + REDES SOCIALES ======================= -->
+<section class="comercio" id="comercio">
+  <h2 class="section-title">Cómo comprar</h2>
+  <p class="section-sub">Todos los pedidos se entregan a domicilio.</p>
+
+  <div class="comercio__grid">
+    <div class="comercio__bloque">
+      <h3>Métodos de pago</h3>
+      <ul class="comercio__lista">
+        <li><span class="comercio__icono">B</span> <span><strong>Bizum</strong> — envía el pago al confirmar tu pedido y te lo llevamos a casa el mismo día.</span></li>
+        <li><span class="comercio__icono">€</span> <span><strong>Efectivo</strong> — paga en mano directamente al repartidor cuando llegue a tu domicilio.</span></li>
+      </ul>
+      <p class="section-sub" style="margin-bottom:0;">De momento no aceptamos tarjeta ni transferencia: todo el proceso es a domicilio, simple y sin comisiones.</p>
+    </div>
+
+    <div class="comercio__bloque">
+      <h3>Síguenos</h3>
+      <div class="redes__lista">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="TikTok">TikTok</a>
+        <a href="#" aria-label="WhatsApp">WhatsApp</a>
+      </div>
+      <p class="section-sub" style="margin-top:1rem; margin-bottom:0;">Novedades, sorteos y dupes recién llegados, primero en redes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FOOTER ======================= -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__col">
+      <p class="logo logo--footer">AROMA</p>
+      <p>Perfumería selecta desde 2026.</p>
+    </div>
+    <div class="footer__col">
+      <a href="#">Contacto</a>
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+      <a href="#">Política de privacidad</a>
+    </div>
+  </div>
+  <p class="footer__copy">© 2026 Aroma</p>
+</footer>
+
+<script src="funcion.js"></script>
+</body>
+</html>
